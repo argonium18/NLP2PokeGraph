@@ -1,0 +1,98 @@
+app/
+├── domain/                           # ★ 意味が安定した中核概念
+│   ├── model/
+│   │   ├── article.py               # 記事（raw / structured）
+│   │   ├── block.py                 # 文ブロック（意味スコープ付き）
+│   │   ├── subject.py               # 主語（候補 / 仮固定）
+│   │   ├── statement.py             # 証言単位
+│   │   ├── entity_candidate.py      # エンティティ候補
+│   │   ├── graph_edge.py            # グラフのエッジ
+│   │   └── audit_log.py             # 監査・由来情報
+│   └── value/
+│       ├── sentence.py
+│       ├── confidence.py
+│       ├── constraint.py
+│       └── score.py
+│
+├── pipeline/                         # ★ 主役：意味変換の流れ
+│   ├── split_structure/             # 記事構造を壊さず分割
+│   │   ├── application/
+│   │   │   └── split_structure_service.py
+│   │   └── policy/
+│   │       └── structure_split_policy.py
+│
+│   ├── generate_blocks/             # 文ブロック生成（スコープ確保）
+│   │   ├── application/
+│   │   │   └── block_generate_service.py
+│   │   └── policy/
+│   │       └── scope_policy.py
+│
+│   ├── extract_subject_candidates/  # 主語候補抽出
+│   │   ├── application/
+│   │   │   └── subject_candidate_service.py
+│   │   └── policy/
+│   │       └── subject_priority_policy.py
+│
+│   ├── fix_subject/                 # 主語仮固定（最重要）
+│   │   ├── application/
+│   │   │   └── subject_fix_service.py
+│   │   └── policy/
+│   │       └── subject_fix_rule.py
+│
+│   ├── split_statements/            # 証言単位への分解
+│   │   ├── application/
+│   │   │   └── statement_split_service.py
+│   │   └── policy/
+│   │       └── statement_boundary_policy.py
+│
+│   ├── enumerate_entities/          # エンティティ候補列挙
+│   │   ├── application/
+│   │   │   └── entity_candidate_service.py
+│   │   └── infrastructure/
+│   │       ├── spacy_adapter.py
+│   │       └── dictionary_repository.py
+│
+│   ├── classify_meaning/            # 意味分類（LLM / rule）
+│   │   ├── application/
+│   │   │   └── meaning_classify_service.py
+│   │   └── infrastructure/
+│   │       └── llm_adapter.py
+│
+│   ├── decide_destination/          # dst決定（制約付き）
+│   │   ├── application/
+│   │   │   └── destination_decision_service.py
+│   │   └── policy/
+│   │       └── destination_constraint.py
+│
+│   ├── calculate_confidence/        # 信頼度算出
+│   │   ├── application/
+│   │   │   └── confidence_calc_service.py
+│   │   └── policy/
+│   │       └── confidence_rule.py
+│
+│   └── build_edges/                 # エッジ生成（監査ログ付き）
+│       ├── application/
+│       │   └── edge_build_service.py
+│       └── policy/
+│           └── audit_policy.py
+│
+├── ingest/                          # ★ 外部サイト依存（入口）
+│   ├── application/
+│   │   └── article_loader_service.py
+│   └── infrastructure/
+│       ├── client/
+│       │   ├── smogon_client.py
+│       │   └── victoryroad_client.py
+│       ├── parser/
+│       │   └── html_text_parser.py
+│       └── repository/
+│           ├── smogon_repository.py
+│           └── victoryroad_repository.py
+│
+├── controller/                      # ★ 世界との接点
+│   └── pipeline_controller.py
+│
+└── shared/                          # ★ 横断的ユーティリティ
+    ├── logging/
+    ├── config/
+    └── typing/
