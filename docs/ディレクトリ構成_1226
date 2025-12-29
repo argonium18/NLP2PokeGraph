@@ -1,0 +1,67 @@
+C:.
+├─.pytest_cache
+│  └─v
+│      └─cache
+├─.vscode
+├─app
+│  ├─controller
+│  ├─domain
+│  │  ├─model
+│  │  │  └─__pycache__
+│  │  └─value
+│  ├─ingest
+│  │  ├─application
+│  │  │  └─__pycache__
+│  │  ├─domain
+│  │  │  ├─model
+│  │  │  │  └─__pycache__
+│  │  │  ├─value
+│  │  │  │  └─__pycache__
+│  │  │  └─__pycache__
+│  │  ├─infrastructure
+│  │  │  ├─client
+│  │  │  │  └─__pycache__
+│  │  │  ├─parser
+│  │  │  │  └─__pycache__
+│  │  │  └─repository
+│  │  │      └─__pycache__
+│  │  └─model
+│  │      └─__pycache__
+│  ├─pipeline
+│  │  ├─build_edges
+│  │  │  ├─application
+│  │  │  └─policy
+│  │  ├─calculate_confidence
+│  │  │  ├─application
+│  │  │  └─policy
+│  │  ├─classify_meaning
+│  │  │  ├─application
+│  │  │  └─infrastructure
+│  │  ├─decide_destination
+│  │  │  ├─application
+│  │  │  └─policy
+│  │  ├─enumerate_entities
+│  │  │  ├─application
+│  │  │  └─infrastructure
+│  │  ├─extract_subject_candidates
+│  │  │  ├─application
+│  │  │  └─policy
+│  │  ├─fix_subject
+│  │  │  ├─application
+│  │  │  └─policy
+│  │  ├─generate_blocks
+│  │  │  ├─application
+│  │  │  └─policy
+│  │  ├─split_statements
+│  │  │  ├─application
+│  │  │  └─policy
+│  │  └─split_structure
+│  │      ├─application
+│  │      └─policy
+│  └─shared
+│      ├─config
+│      ├─logging
+│      └─typing
+├─docs
+├─tests
+│  └─__pycache__

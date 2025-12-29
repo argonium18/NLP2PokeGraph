@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import List
-from app.ingest.model.smogon_section import SmogonSection
+from app.ingest.domain.value.smogon_section import SmogonSection
 
 
 @dataclass

@@ -12,9 +12,11 @@ def main():
     repository = SmogonRepository(client, parser)
     service = ArticleLoaderService(repository)
 
+    # ポケモンによっては記事が記載されていないものもある
+
     article = service.load_smogon_article(
         json_url="https://pkmn.github.io/smogon/data/analyses/gen9.json",
-        pokemon_name="Abomasnow",
+        pokemon_name="Skeledirge",
     )
 
     print(f"Source: {article.source}")
