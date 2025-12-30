@@ -1,10 +1,11 @@
-# app/domain/model/article.py
 from dataclasses import dataclass
-from typing import Optional
+from typing import List
+from app.domain.value.smogon_section import SmogonSection
+
 
 @dataclass
 class Article:
-    source: str            # "smogon" / "victoryroad"
-    url: str
-    raw_html: str
-    title: Optional[str] = None
+
+    source: str              # "smogon", "victoryroad" など
+    title: str               # "Abomasnow"
+    sections: List[SmogonSection]

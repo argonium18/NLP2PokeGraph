@@ -1,0 +1,59 @@
+src
+├─ controller
+│  └─ graph_controller.py
+│
+├─ application
+│  └─ usecase
+│     ├─ build_graph_from_text_usecase.py
+│     └─ build_graph_from_api_usecase.py
+│
+├─ domain
+│  ├─ model
+│  │  ├─ article.py
+│  │  ├─ entity.py
+│  │  ├─ graph_edge.py
+│  │  └─ value
+│  │     ├─ sentence.py
+│  │     ├─ confidence.py
+│  │     └─ constraint.py
+│  │
+│  └─ rule
+│     └─ subject_priority_rule.py
+│
+├─ pipeline
+│  ├─ ingest
+│  │  ├─ text_ingest_pipeline.py
+│  │  └─ api_ingest_pipeline.py
+│  │
+│  ├─ split_statement
+│  │  └─ statement_split_pipeline.py
+│  │
+│  ├─ extract_subject
+│  │  └─ subject_candidate_pipeline.py
+│  │
+│  ├─ classify_meaning
+│  │  └─ meaning_classification_pipeline.py
+│  │
+│  ├─ build_edge
+│  │  └─ edge_build_pipeline.py
+│  │
+│  └─ calculate_confidence
+│     └─ confidence_calc_pipeline.py
+│
+├─ infrastructure
+│  ├─ client
+│  │  ├─ neo4j_client.py
+│  │  └─ external_api_client.py
+│  │
+│  ├─ adapter
+│  │  ├─ llm_adapter.py
+│  │  └─ nlp_adapter.py
+│  │
+│  └─ repository
+│     └─ graph_repository.py
+│
+└─ shared
+   ├─ config
+   │  └─ config.py
+   └─ logging
+      └─ logger.py
