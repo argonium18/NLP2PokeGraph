@@ -1,59 +1,74 @@
-src
-├─ controller
-│  └─ graph_controller.py
+C:.
+├─application
+│  └─usecase
+│          build_graph_from_api_usecase.py
+│          build_graph_from_text_usecase.py
 │
-├─ application
-│  └─ usecase
-│     ├─ build_graph_from_text_usecase.py
-│     └─ build_graph_from_api_usecase.py
+├─controller
+│      pipeline_controller.py
 │
-├─ domain
-│  ├─ model
-│  │  ├─ article.py
-│  │  ├─ entity.py
-│  │  ├─ graph_edge.py
-│  │  └─ value
-│  │     ├─ sentence.py
-│  │     ├─ confidence.py
-│  │     └─ constraint.py
+├─domain
+│  ├─model
+│  │      article.py
+│  │      entity.py
+│  │      graph_edge.py
 │  │
-│  └─ rule
-│     └─ subject_priority_rule.py
+│  └─value
+│      │  confidence.py
+│      │  constraint.py
+│      │  score.py
+│      │  sentence.py
+│      │  smogon_section.py
 │
-├─ pipeline
-│  ├─ ingest
-│  │  ├─ text_ingest_pipeline.py
-│  │  └─ api_ingest_pipeline.py
+├─infrastructure
+│  ├─client
+│  │      neo4j_client.py
+│  │      smogon_client.py
 │  │
-│  ├─ split_statement
-│  │  └─ statement_split_pipeline.py
+│  ├─parser
+│  │      smogon_analysis_parser.py
 │  │
-│  ├─ extract_subject
-│  │  └─ subject_candidate_pipeline.py
-│  │
-│  ├─ classify_meaning
-│  │  └─ meaning_classification_pipeline.py
-│  │
-│  ├─ build_edge
-│  │  └─ edge_build_pipeline.py
-│  │
-│  └─ calculate_confidence
-│     └─ confidence_calc_pipeline.py
+│  └─repository
+│      │  neo4j_repository.py
+│      │  smogon_repository.py
 │
-├─ infrastructure
-│  ├─ client
-│  │  ├─ neo4j_client.py
-│  │  └─ external_api_client.py
+├─pipeline
+│  ├─build_edges
+│  │      edge_build_service.py
 │  │
-│  ├─ adapter
-│  │  ├─ llm_adapter.py
-│  │  └─ nlp_adapter.py
+│  ├─calculate_confidence
+│  │      confidence_calc_service.py
 │  │
-│  └─ repository
-│     └─ graph_repository.py
+│  ├─classify_meaning
+│  │      llm_input_builder.py
+│  │
+│  ├─decide_destination
+│  │      destination_decision_service.py
+│  │
+│  ├─enumerate_entities
+│  │      entity_enumerator.py
+│  │
+│  ├─extract_subject_candidates
+│  │      subject_candidate_service.py
+│  │
+│  ├─fix_subject
+│  │      subject_fix_service.py
+│  │
+│  ├─generate_blocks
+│  │      block_generate_service.py
+│  │
+│  ├─ingest
+│  │      api_ingest_pipeline.py
+│  │      text_ingest_pipeline.py
+│  │
+│  └─split_statements
+│          statement_split_service.py
 │
-└─ shared
-   ├─ config
-   │  └─ config.py
-   └─ logging
-      └─ logger.py
+└─shared
+    ├─config
+    │      config.py
+    │
+    ├─logging
+    │      logger.py
+    │
+    └─typing
