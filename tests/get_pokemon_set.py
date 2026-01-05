@@ -33,6 +33,8 @@ def main():
     print(f"{pokemon_name} の攻略セット一覧:")
     for set_name, pokemon_set in sets.items():
         print(f"\n=== セット名: {set_name} ===")
+        print("PokemonName:", pokemon_set.pokemon_name)
+        print("SetName:", pokemon_set.set_name)
         print("Moves:", pokemon_set.moves)
         print("Nature:", pokemon_set.nature)
         print("Ability:", pokemon_set.ability)

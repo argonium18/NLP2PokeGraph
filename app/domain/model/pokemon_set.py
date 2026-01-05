@@ -4,7 +4,8 @@ from typing import List, Optional
 class PokemonSet:
     def __init__(
         self,
-        name: str,
+        pokemon_name: str,
+        set_name: str,
         moves: List[str],
         nature: Optional[str] = None,
         ability: Optional[str] = None,
@@ -13,7 +14,8 @@ class PokemonSet:
         role: Optional[str] = None,
         raw: Optional[dict] = None,
     ):
-        self.name = name
+        self.pokemon_name = pokemon_name
+        self.set_name = set_name
         self.moves = moves
         self.nature = nature
         self.ability = ability

@@ -42,7 +42,8 @@ class ArticleLoaderService:
         raw_sets: dict[str, PokemonSet] = {}
         for set_name, data in sets_data.items():
             raw_sets[set_name] = PokemonSet(
-                name=data.get("title") or data.get("name") or set_name,
+                pokemon_name=pokemon_name,
+                set_name=set_name,
                 moves=data.get("moves") or [],
                 nature=data.get("nature"),
                 ability=data.get("ability"),

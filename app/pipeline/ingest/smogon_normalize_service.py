@@ -41,7 +41,8 @@ class SmogonNormalizeService:
             normalized_ability = self._normalize_list(ability_list, abilities_master)
 
             normalized[set_name] = PokemonSet(
-                name=pokemon_set.name,
+                pokemon_name=pokemon_set.pokemon_name,
+                set_name=pokemon_set.set_name,
                 moves=normalized_moves,
                 nature=pokemon_set.nature,
                 ability=normalized_ability,
