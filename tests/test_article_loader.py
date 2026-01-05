@@ -30,14 +30,6 @@ def main():
     # json_url = "https://pkmn.github.io/smogon/data/analyses/gen9ou.json"
     pokemon_name = "Clefable"
 
-    # raw_smogon = article_loader.load_raw_smogon(
-    #     json_url=json_url,
-    #     pokemon_name=pokemon_name,
-    # )
-
-    # print(raw_smogon)
-
-
     # ④ 実行
     article = article_loader.load_smogon_article(
         pokemon_name=pokemon_name,
