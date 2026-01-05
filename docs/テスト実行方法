@@ -1,1 +1,3 @@
-python -m tests.test04
+
+# モジュール実行
+# python -m tests.test04
