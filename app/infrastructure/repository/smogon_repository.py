@@ -2,6 +2,7 @@
 from typing import List, Dict, Any
 from app.domain.value.smogon_section import SmogonSection
 from app.infrastructure.client.smogon_client import SmogonClient
+from app.infrastructure.repository.smogon_dto import SmogonSetDTO
 from app.infrastructure.parser.smogon_analysis_parser import SmogonAnalysisParser
 
 class SmogonRepository:
@@ -19,13 +20,18 @@ class SmogonRepository:
             return []
         return self.parser.parse(pokemon_data)
 
-    # 新規追加: 攻略セット取得
-    def find_sets_by_pokemon(self, pokemon_name: str) -> Dict[str, Any]:
+
+    def find_sets_by_pokemon(self, pokemon_name: str) -> dict[str, SmogonSetDTO]:
         raw_sets = self.client.fetch_sets(self.DEFAULT_FORMAT_ID)
         pokemon_sets = self._find_species(raw_sets, pokemon_name)
         if not pokemon_sets:
             return {}
-        return pokemon_sets  # あとで domain/PokemonSet に変換しても良い
+
+        return {
+            set_name: SmogonSetDTO(raw=data)
+            for set_name, data in pokemon_sets.items()
+        }
+
 
     def _find_species(self, raw_data: dict, species: str) -> Any:
         """

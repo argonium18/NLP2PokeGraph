@@ -1,13 +1,20 @@
+# build_graph_from_text_usecase.py
+
 from app.infrastructure.client.neo4j_client import Neo4jClient
+from app.infrastructure.repository.entity_repository import EntityRepository
 from app.pipeline.enumerate_entities.entity_enumerator import EntityEnumerator
 from app.pipeline.classify_meaning.llm_input_builder import LLMInputBuilder
 from app.shared.config.config import NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD
 from app.shared.logging.logger import logger
 
 def main():
-    # Neo4j からエンティティ取得
+    # Neo4j クライアント作成
     neo4j_client = Neo4jClient(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
-    entity_list = neo4j_client.get_all_entities()
+
+    # Repository 経由でエンティティ取得
+    entity_repo = EntityRepository(neo4j_client)
+    entity_list = entity_repo.list_all()
+
     neo4j_client.close()
     logger.info(f"Loaded {len(entity_list)} entities from Neo4j")
 

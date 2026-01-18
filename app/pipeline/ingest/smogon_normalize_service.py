@@ -1,6 +1,6 @@
 # smogon_normalize_service.py
 import re
-from app.domain.model.pokemon_set import PokemonSet  # <- import
+from app.domain.model.pokemon_set import PokemonSet
 from typing import Any
 
 def normalize_key(name: str) -> str:
@@ -30,15 +30,15 @@ class SmogonNormalizeService:
             print(set_name, pokemon_set)  # デバッグ
 
             # moves（元からリストだが入れ子リストにも対応）
-            normalized_moves = self._normalize_list(pokemon_set.moves, moves_master)
+            normalized_moves = self._normalize_list(pokemon_set.moves, moves_master) or []
 
             # item（単一文字列 or リスト対応）
             item_list = [pokemon_set.item] if isinstance(pokemon_set.item, str) else pokemon_set.item
-            normalized_item = self._normalize_list(item_list, items_master)
+            normalized_item = self._normalize_list(item_list, items_master) or []
 
             # ability（単体文字列の場合はリスト化）
             ability_list = [pokemon_set.ability] if isinstance(pokemon_set.ability, str) else pokemon_set.ability
-            normalized_ability = self._normalize_list(ability_list, abilities_master)
+            normalized_ability = self._normalize_list(ability_list, abilities_master) or []
 
             normalized[set_name] = PokemonSet(
                 pokemon_name=pokemon_set.pokemon_name,
@@ -49,7 +49,6 @@ class SmogonNormalizeService:
                 item=normalized_item,
                 evs=pokemon_set.evs,
                 role=pokemon_set.role,
-                raw=pokemon_set.raw
             )
 
         return normalized
