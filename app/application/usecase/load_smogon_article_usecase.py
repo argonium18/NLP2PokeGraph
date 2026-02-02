@@ -16,17 +16,18 @@ class LoadAndRenderSmogonArticleUseCase:
             pokemon_name=pokemon_name,
         )
 
-        lines: list[str] = []
-
-        lines.append(f"Source: {article.source}")
-        lines.append(f"Title : {article.title}")
-        lines.append("-" * 50)
-
+        # CLI表示用の文字列を作成
+        lines = [
+            "=== Article ===",
+            f"source: {article.source}",
+            f"title: {article.title}",
+            "sections:",
+        ]
         for section in article.sections:
-            lines.append(
-                f"[{section.kind}] tier={section.tier} "
-                f"set={section.set_name}"
-            )
-            lines.append(section.html[:200] + "...\n")
+            lines.append(str(section))
 
+        # 標準出力
+        print("\n".join(lines))
+
+        # 文字列として返す
         return "\n".join(lines)

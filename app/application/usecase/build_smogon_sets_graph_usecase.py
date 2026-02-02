@@ -4,7 +4,7 @@ from app.pipeline.ingest.api_ingest_pipeline import ArticleLoaderService
 from app.infrastructure.repository.pokemon_set_repository import PokemonSetRepository
 
 
-class BuildGraphFromApiUsecase:
+class BuildSmogonSetsGraphUsecase:
     def __init__(
         self,
         loader_service: ArticleLoaderService,

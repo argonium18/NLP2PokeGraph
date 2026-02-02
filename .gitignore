@@ -1,2 +1,26 @@
 .env
+app/external/# 環境変数ファイル
+.env
+
+# 仮想環境
+venv/
+env/
+
+# Pythonキャッシュ
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ビルド成果物
+build/
+dist/
+*.egg-info/
+
+# 外部ライブラリ（今書いてある場所）
 app/external/
+
+# IDE / エディタ関連
+.vscode/
+.idea/
+*.swp
