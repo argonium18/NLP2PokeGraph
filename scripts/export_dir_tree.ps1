@@ -10,4 +10,4 @@ ForEach-Object {
     $depth = ($_.FullName.Substring((Get-Location).Path.Length) -split '\\').Count - 1
     ('│   ' * ($depth - 1)) + '├── ' + $_.Name
 } |
-Out-File -Encoding UTF8 "$PSScriptRoot\..\directory_tree.txt"
+Out-File -Encoding UTF8 ".\directory_tree.txt"

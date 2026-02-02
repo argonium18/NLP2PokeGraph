@@ -5,6 +5,7 @@ from app.infrastructure.repository.smogon_repository import SmogonRepository
 from app.infrastructure.repository.pokemon_master_repository import PokemonMasterRepository
 from app.pipeline.ingest.api_ingest_pipeline import ArticleLoaderService
 from app.pipeline.ingest.api_ingest_pipeline import SmogonNormalizeService
+from app.pipeline.ingest.smogon_translate_service import SmogonTranslateService
 
 def main():
     # 1. Client / Parser / Repository を初期化
@@ -13,11 +14,15 @@ def main():
     smogon_repo = SmogonRepository(client=smogon_client, parser=smogon_parser)
     pokemon_master_repo = PokemonMasterRepository()  # ダミーでも OK
     smogon_normalize_service = SmogonNormalizeService()
+    smogon_translate_service = SmogonTranslateService()
     loader_service = ArticleLoaderService(
         smogon_repository=smogon_repo,
         pokemon_master_repository=pokemon_master_repo,
-        smogon_normalize_service=smogon_normalize_service  # 今回はセット取得のみなので None でも OK
+        smogon_normalize_service=smogon_normalize_service, # 今回はセット取得のみなので None でも OK
+        smogon_translate_service= smogon_translate_service
     )
+    # ② ArticleLoaderService をインスタンス化
+    article_loader = 
 
     # 2. ポケモン名を指定
     pokemon_name = "Great Tusk"

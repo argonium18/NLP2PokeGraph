@@ -1,6 +1,6 @@
 # smogon_normalize_service.py
 import re
-from app.domain.model.pokemon_set import PokemonSet
+from app.domain.model.pokemon_set import PokemonSet  # <- import
 from typing import Any
 
 def normalize_key(name: str) -> str:

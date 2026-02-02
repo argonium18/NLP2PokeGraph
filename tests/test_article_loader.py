@@ -5,6 +5,7 @@ from app.infrastructure.repository.smogon_repository import SmogonRepository
 from app.infrastructure.repository.pokemon_master_repository import PokemonMasterRepository
 from app.pipeline.ingest.smogon_normalize_service import SmogonNormalizeService
 from app.pipeline.ingest.api_ingest_pipeline import ArticleLoaderService
+from app.pipeline.ingest.smogon_translate_service import SmogonTranslateService
 
 
 def main():
@@ -18,12 +19,14 @@ def main():
     )
     pokemon_master_repository = PokemonMasterRepository()
     smogon_normalize_service = SmogonNormalizeService()
+    smogon_translate_service = SmogonTranslateService()
 
     # ② ArticleLoaderService をインスタンス化
     article_loader = ArticleLoaderService(
-        smogon_repository=smogon_repository,
-        pokemon_master_repository=pokemon_master_repository,
-        smogon_normalize_service=smogon_normalize_service,
+        smogon_repository = smogon_repository,
+        pokemon_master_repository = pokemon_master_repository,
+        smogon_normalize_service = smogon_normalize_service,
+        smogon_translate_service = smogon_translate_service
     )
 
     # ③ 入力パラメータ
